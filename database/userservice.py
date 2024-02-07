@@ -64,5 +64,14 @@ def edit_user_db(user_id, edit_info, new_info):
         return 'Такого пользователя нету брат!'
 
 # Удаления пользователя
-# def delete_user_db()
-# Если не сделали 10 отжиманий
+def delete_user_db(user_id):
+    db = next(get_db())
+
+    user = db.query(User).filter_by(user_id=user_id).first()
+
+    if not user:
+        return 'такой пользователь найден(('
+    else:
+        db.delete(user)
+        db.commit()
+        return 'пользователь удален'
