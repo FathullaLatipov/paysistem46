@@ -32,14 +32,14 @@ class UserCard(Base):
 class Transfer(Base):
     __tablename__ = 'transfers'
     transfer_id = Column(Integer, primary_key=True, autoincrement=True)
-    card_from_id = Column(Integer, ForeignKey('cards_card_id')) #1
-    card_to_id = Column(Integer, ForeignKey('cards_card_id')) #2
+    card_from_id = Column(Integer, ForeignKey('cards.card_id')) #1
+    card_to_id = Column(Integer, ForeignKey('cards.card_id')) #2
     amount = Column(Float) # 1020.200
 
     status = Column(Boolean, default=True)
 
     transaction_date = Column(DateTime) #12.123.123
 
-    card_from_fk = relationship(UserCard, lazy='subquery')
-    card_to_fk = relationship(UserCard, lazy='subquery')
+    card_from_fk = relationship(UserCard, foreign_keys=[card_from_id], lazy='subquery')
+    card_to_fk = relationship(UserCard, foreign_keys=[card_to_id], lazy='subquery')
 

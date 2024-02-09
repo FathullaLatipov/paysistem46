@@ -17,17 +17,17 @@ async def register_new_user(data: UserRegistrationValidator):
     checker = check_user_email_db(data.email)
 
     if checker:
-        return {"message": 'Пользователь с таким эмейлом уже есть в БД'}
-    else:
         result = registration_user_db(reg_date=datetime.now(), **new_user_data)
 
         return result
+    else:
+        return {"message": 'Пользователь с таким эмейлом уже есть в БД'}
 
 
 # Получения информации о пользователе
 @user_router.get('/info')
 async def get_user(user_id: int):
-    result = get_exact_user_db(3)
+    result = get_exact_user_db(user_id=user_id)
 
     if result:
         return {'message': result}
@@ -44,7 +44,18 @@ async def edit_user(data: EditUserValidator):
 
     return result
 
-# Получить всех пользователей -> def get_all_users
-# Удалить пользователей -> def delete_user
-# 18:45 - 18:55 спрошу
+@user_router.get('/get-all-users')
+async def get_all_users():
+    all_users = get_all_users_db()
+
+    return all_users
+
+
+@user_router.delete('/delete-user')
+async def delete_user(user_id: int):
+    result = delete_user_db(user_id)
+    if result:
+        return 'Пользователь успешно удален'
+    else:
+        return 'Нету такого пользователья'
 

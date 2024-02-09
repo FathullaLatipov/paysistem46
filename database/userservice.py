@@ -15,6 +15,7 @@ def registration_user_db(name, surname, phone_number, email, city, reg_date, pas
 
     return 'Пользователь успешно зарегался брат!'
 
+
 # Получить инфо о пользователе
 def get_exact_user_db(user_id):
     db = next(get_db())
@@ -26,6 +27,7 @@ def get_exact_user_db(user_id):
     else:
         return 'Я хз брат!'
 
+
 # Получить всех пользователей
 def get_all_users_db():
     db = next(get_db())
@@ -33,6 +35,7 @@ def get_all_users_db():
     all_users = db.query(User).all()
 
     return all_users
+
 
 # Проверка данных через email
 def check_user_email_db(email):
@@ -44,6 +47,7 @@ def check_user_email_db(email):
         return checker
     else:
         return 'Нету такого email брат!'
+
 
 # Изменить данные у определенного пользователя
 def edit_user_db(user_id, edit_info, new_info):
@@ -62,6 +66,7 @@ def edit_user_db(user_id, edit_info, new_info):
         return 'Данные успешно изменены'
     else:
         return 'Такого пользователя нету брат!'
+
 
 # Удаления пользователя
 def delete_user_db(user_id):

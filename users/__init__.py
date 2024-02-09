@@ -14,5 +14,5 @@ class UserRegistrationValidator(BaseModel):
 # Валидатор для изменении данных пользователя
 class EditUserValidator(BaseModel):
     user_id: int
-    edit_data: str
-    new_data: str
+    edit_info: str
+    new_info: str
