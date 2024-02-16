@@ -7,4 +7,4 @@ WORKDIR /paysistem46
 # Установка библиотек
 RUN pip install -r requirements.txt
 # Запуск проекта
-CMD ['uvicorn', 'main:app', '--reload']
+CMD ['uvicorn', 'main:app', '--reload',  "--host=0.0.0.0", "--port=2525"]
